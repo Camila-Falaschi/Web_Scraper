@@ -6,7 +6,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 BASE_URL = "https://lista.mercadolivre.com.br"
 DRIVER_PATH = '/path/to/chromedriver'
 
-def scrape_tecnology_category():
+def scrape_navbar_category():
+    """This function returns the URL to the page with the categories list."""
+    
     browser_options = ChromeOptions()
     driver = Chrome(ChromeDriverManager().install(), options=browser_options)
     driver.get(BASE_URL)
