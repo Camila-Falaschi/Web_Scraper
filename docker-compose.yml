@@ -8,6 +8,7 @@ services:
       - 3000:3000
     working_dir: /app-frontend
     platform: linux/x86_64
+    restart: unless-stopped
     depends_on:
       - backend
 
@@ -36,9 +37,8 @@ services:
     container_name: mongo_db
     volumes:
       - ./:/app
-    restart: always
+    restart: unless-stopped
     ports:
-      - 4444:4444
       - 27017:27017
     networks:
       - web_scraper_net
@@ -46,12 +46,13 @@ services:
   selenium:
     image: selenium/standalone-chrome
     container_name: chrome
+    hostname: chrome
     ports:
+      - 4444:4444
       - 7900:7900
     shm_size: 2g
-    tty: true
-    stdin_open: true
+    privileged: true
 
 networks:
-  default:
-    name: web_scraper_net
+  web_scraper_net:
+    driver: bridge

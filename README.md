@@ -20,7 +20,7 @@
 To create the virtual enviroment you need to have `pip` installed in you computer. You can use the following command to verify you have it installed:
 ```
 python3 -m pip --version
-# Return something similar to: pip 21.1.3 from $HOME/.local/lib/python3.9/site-packages (python 3.9)
+// Return something similar to: pip 21.1.3 from $HOME/.local/lib/python3.9/site-packages (python 3.9)
 ```
 
 1. **Create and activate the virtual environment**
@@ -32,3 +32,5 @@ python3 -m venv .venv && source .venv/bin/activate
 python3 -m pip install -r dev-requirements.txt
 ```
 
+## Docker
+To start the Docker containers run the command `docker-compose up -d --build` in the root directory (`~/web_scraper`). It might take a while.
