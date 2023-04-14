@@ -1,0 +1,57 @@
+version: "3"
+
+services:
+  frontend:
+    container_name: frontend
+    build: ./frontend
+    ports:
+      - 3000:3000
+    working_dir: /app-frontend
+    platform: linux/x86_64
+    depends_on:
+      - backend
+
+  backend:
+    image: node:16.14
+    container_name: backend
+    build: ./backend
+    ports:
+      - 3001:3001
+    working_dir: /app-backend
+    volumes:
+      - ./:/app
+    tty: true
+    stdin_open: true
+    command: bash
+    restart: unless-stopped
+    depends_on:
+      - mongodb
+    environment:
+      - DB_HOST=mongodb
+    networks:
+      - web_scraper_net
+
+  mongodb:
+    image: mongo:5.0.7
+    container_name: mongo_db
+    volumes:
+      - ./:/app
+    restart: always
+    ports:
+      - 4444:4444
+      - 27017:27017
+    networks:
+      - web_scraper_net
+
+  selenium:
+    image: selenium/standalone-chrome
+    container_name: chrome
+    ports:
+      - 7900:7900
+    shm_size: 2g
+    tty: true
+    stdin_open: true
+
+networks:
+  default:
+    name: web_scraper_net
