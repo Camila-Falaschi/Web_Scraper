@@ -38,6 +38,9 @@ class Buscape_Scraper:
     get_refrigerators() -> list[dict]
         Returns dictionaries' list.
         Each dictionary has the data of a refrigarator from the results page.
+    get_tv() -> list[dict]
+        Returns dictionaries' list.
+        Each dictionary has the data of a television from the results page.
     """
 
     def __init__(self):
@@ -55,8 +58,8 @@ class Buscape_Scraper:
 
         self.driver.get(self.BASE_URL)
         category_button = self.driver.find_element(
-            By.XPATH, 
-            f"//a[contains(@data-testid, 'hotlink-item') and contains(@title, {products})]"
+            By.XPATH,
+            f"//a[contains(@data-testid, 'hotlink-item') and contains(@title, {products})]",
         ).get_attribute("href")
 
         return category_button
@@ -84,43 +87,43 @@ class Buscape_Scraper:
     def get_products(self, page_url: str) -> list[dict]:
         """This function returns a list of all available products
         on the page.
-        Each product on the list is a dictionary 
+        Each product on the list is a dictionary
         with product's description, photo, and price.
         """
 
         self.driver.get(page_url)
         products_elements = self.driver.find_elements(
-                By.XPATH,
-                "//div[contains(@class, 'SearchCard_ProductCard__1D3ve')]",
-            )
+            By.XPATH,
+            "//div[contains(@class, 'SearchCard_ProductCard__1D3ve')]",
+        )
         products_list = []
         for product in products_elements:
             data = self.get_data(product)
             products_list.append(data)
         return products_list
 
-    def get_mobiles(self):
+    def get_mobiles(self) -> list[dict]:
         """This function returns dictionaries' list.
         Each dictionary has the data of a mobile phone from the results page."""
-        
+
         mobile_page = self.search_products("Celular")
         products_list = self.get_products(mobile_page)
         self.driver.quit()
         return products_list
 
-    def get_refrigerators(self):
+    def get_refrigerators(self) -> list[dict]:
         """This function returns dictionaries' list.
         Each dictionary has the data of a refrigarator from the results page."""
-        
+
         refrigarator_page = self.search_products("Geladeira")
         products_list = self.get_products(refrigarator_page)
         self.driver.quit()
         return products_list
 
-    def get_tv(self):
+    def get_tv(self) -> list[dict]:
         """This function returns dictionaries' list.
         Each dictionary has the data of a television from the results page."""
-        
+
         tv_page = self.search_products("TV")
         products_list = self.get_products(tv_page)
         self.driver.quit()

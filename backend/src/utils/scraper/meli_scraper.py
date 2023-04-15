@@ -38,6 +38,9 @@ class Meli_Scraper:
     get_refrigerators() -> list[dict]
         Returns dictionaries' list.
         Each dictionary has the data of a refrigarator from the results page.
+    get_tv() -> list[dict]
+        Returns dictionaries' list.
+        Each dictionary has the data of a television from the results page.
     """
 
     def __init__(self):
@@ -97,7 +100,7 @@ class Meli_Scraper:
             products_list.append(data)
         return products_list
 
-    def get_mobiles(self):
+    def get_mobiles(self) -> list[dict]:
         """This function returns dictionaries' list.
         Each dictionary has the data of a mobile phone from the results page."""
 
@@ -106,7 +109,7 @@ class Meli_Scraper:
         self.driver.quit()
         return products_list
 
-    def get_refrigerators(self):
+    def get_refrigerators(self) -> list[dict]:
         """This function returns dictionaries' list.
         Each dictionary has the data of a refrigarator from the results page."""
 
@@ -115,7 +118,10 @@ class Meli_Scraper:
         self.driver.quit()
         return products_list
 
-    def get_tv(self):
+    def get_tv(self) -> list[dict]:
+        """This function returns dictionaries' list.
+        Each dictionary has the data of a television from the results page."""
+
         self.search_products("Televisores")
         try:
             wait = WebDriverWait(self.driver, 10)
