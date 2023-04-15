@@ -42,7 +42,7 @@ class Meli_Scraper:
 
     def __init__(self):
         self.browser_options = ChromeOptions()
-        # self.browser_options.headless = True
+        self.browser_options.headless = True
         self.driver = Chrome(
             ChromeDriverManager().install(), options=self.browser_options
         )
@@ -112,6 +112,7 @@ class Meli_Scraper:
         
         self.search_products("Geladeiras")
         products_list = self.get_products()
+        self.driver.quit()
         return products_list
 
     # def get_tv(self):
