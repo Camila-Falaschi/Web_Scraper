@@ -2,6 +2,7 @@ from selenium.webdriver import Chrome, ChromeOptions
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class Meli_Scraper:
@@ -28,7 +29,7 @@ class Meli_Scraper:
     get_data(self, product:WebElement) -> dict
         This function will return a dictionary
         with the product's image, description, and price.
-    get_products_in_list() -> list[dict]
+    get_products() -> list[dict]
         Returns dictionaries' list.
         Each dictionary has the data of a product from the results page.
     get_mobiles() -> list[dict]
@@ -41,7 +42,7 @@ class Meli_Scraper:
 
     def __init__(self):
         self.browser_options = ChromeOptions()
-        self.browser_options.headless = True
+        # self.browser_options.headless = True
         self.driver = Chrome(
             ChromeDriverManager().install(), options=self.browser_options
         )
@@ -79,13 +80,13 @@ class Meli_Scraper:
         data["price"] = f"{price_symbol} {price_value}"
         return data
 
-    def get_products_in_list(self) -> list[dict]:
+    def get_products(self) -> list[dict]:
         """This function returns a list of all available products
         on the page.
         Each product on the list is a dictionary 
         with product's description, photo, and price.
         """
-        
+
         products_elements = self.driver.find_elements(
                 By.XPATH,
                 "//div[contains(@class, 'andes-card--default ui-search-result')]",
@@ -96,15 +97,12 @@ class Meli_Scraper:
             products_list.append(data)
         return products_list
 
-    def get_products_in_role():
-        pass
-
     def get_mobiles(self):
         """This function returns dictionaries' list.
         Each dictionary has the data of a mobile phone from the results page."""
         
         self.search_products("Celulares e smartphones")
-        products_list = self.get_products_in_list()
+        products_list = self.get_products()
         self.driver.quit()
         return products_list
 
@@ -113,12 +111,12 @@ class Meli_Scraper:
         Each dictionary has the data of a refrigarator from the results page."""
         
         self.search_products("Geladeiras")
-        products_list = self.get_products_in_list()
+        products_list = self.get_products()
         return products_list
 
-    def get_tv(self):
-        self.search_products("Televisores")
-        products_list = self.get_products_in_role()
-        print(len(products_list))
-        self.driver.quit()
-        return products_list
+    # def get_tv(self):
+    #     self.search_products("Televisores")
+    #     products_list = self.get_products()
+    #     print(len(products_list))
+    #     self.driver.quit()
+    #     return products_list
