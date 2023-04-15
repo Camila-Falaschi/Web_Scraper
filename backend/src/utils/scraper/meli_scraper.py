@@ -83,14 +83,14 @@ class Meli_Scraper:
     def get_products(self) -> list[dict]:
         """This function returns a list of all available products
         on the page.
-        Each product on the list is a dictionary 
+        Each product on the list is a dictionary
         with product's description, photo, and price.
         """
 
         products_elements = self.driver.find_elements(
-                By.XPATH,
-                "//div[contains(@class, 'andes-card--default ui-search-result')]",
-            )
+            By.XPATH,
+            "//div[contains(@class, 'andes-card--default ui-search-result')]",
+        )
         products_list = []
         for product in products_elements:
             data = self.get_data(product)
@@ -100,7 +100,7 @@ class Meli_Scraper:
     def get_mobiles(self):
         """This function returns dictionaries' list.
         Each dictionary has the data of a mobile phone from the results page."""
-        
+
         self.search_products("Celulares e smartphones")
         products_list = self.get_products()
         self.driver.quit()
@@ -109,15 +109,24 @@ class Meli_Scraper:
     def get_refrigerators(self):
         """This function returns dictionaries' list.
         Each dictionary has the data of a refrigarator from the results page."""
-        
+
         self.search_products("Geladeiras")
         products_list = self.get_products()
         self.driver.quit()
         return products_list
 
-    # def get_tv(self):
-    #     self.search_products("Televisores")
-    #     products_list = self.get_products()
-    #     print(len(products_list))
-    #     self.driver.quit()
-    #     return products_list
+    def get_tv(self):
+        self.search_products("Televisores")
+        try:
+            wait = WebDriverWait(self.driver, 10)
+            wait.until(
+                EC.presence_of_all_elements_located(
+                    (By.CLASS_NAME, "andes-card--default")
+                )
+            )
+            products_list = self.get_products()
+            self.driver.quit()
+            return products_list
+        except:
+            self.driver.quit()
+            return []
