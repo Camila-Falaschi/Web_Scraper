@@ -1,6 +1,8 @@
 from selenium.webdriver import Chrome, ChromeOptions
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
+import time
 
 
 class Meli_Scraper:
@@ -26,7 +28,7 @@ class Meli_Scraper:
 
     def __init__(self):
         self.browser_options = ChromeOptions()
-        self.browser_options.headless = True
+        # self.browser_options.headless = True
         self.driver = Chrome(
             ChromeDriverManager().install(), options=self.browser_options
         )
@@ -51,8 +53,15 @@ class Meli_Scraper:
         return page_url
 
     def get_mobiles(self):
-        self.scrape_categories_list("Celulares e Smartphones")
-        print()
+        mobile_url = self.scrape_categories_list("Celulares e Smartphones")
+        self.driver.get(mobile_url)
+        WebDriverWait(self.driver, 20).until(Chrome.find_element((By.XPATH, "//button[@class='andes-button']")))
+        button = self.driver.find_element(By.CLASS_NAME, "andes-button")
+        button.find_element(By.XPATH, "..").click()
+        
+        products = self.driver.find_elements(By.XPATH, "//li[contains(@class, 'ui-search-layout__item')]")
+        # self.driver.quit()
+        return products
 
     def get_refrigerator(self):
         pass
