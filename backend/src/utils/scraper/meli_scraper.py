@@ -1,8 +1,7 @@
 from selenium.webdriver import Chrome, ChromeOptions
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
-import time
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class Meli_Scraper:
@@ -11,60 +10,115 @@ class Meli_Scraper:
 
     Attributes
     ----------
-    browser_options: <class 'selenium.webdriver.chrome.options.Options'>
+    browser_options : <class 'selenium.webdriver.chrome.options.Options'>
         Creates a new instance of ChromeOptions.
-    browser_options.headless: bool
+    browser_options.headless : bool
         Defines browser options headless to True.
     driver : <class 'selenium.webdriver.chrome.webdriver.WebDriver'>
         Creates a new instance of the Chrome driver.
+    BASE_URL : str
+        Mercado Livre home page URL.
 
     Methods
     -------
-    scrape_homepage_navbar() -> str
-        Returns the URL to the page with the categories list.
-    scrape_categories_list(category:str) -> str
-        Returns the URL to the page with the categories list.
+    search_products(products:str) -> None
+        This function will redirect the current page
+        to a page with the results of the products searched
+        according to the given term.
+    get_data(self, product:WebElement) -> dict
+        This function will return a dictionary
+        with the product's image, description, and price.
+    get_products_in_list() -> list[dict]
+        Returns dictionaries' list.
+        Each dictionary has the data of a product from the results page.
+    get_mobiles() -> list[dict]
+        Returns dictionaries' list.
+        Each dictionary has the data of a mobile phone from the results page.
+    get_refrigerators() -> list[dict]
+        Returns dictionaries' list.
+        Each dictionary has the data of a refrigarator from the results page.
     """
 
     def __init__(self):
         self.browser_options = ChromeOptions()
-        # self.browser_options.headless = True
+        self.browser_options.headless = True
         self.driver = Chrome(
             ChromeDriverManager().install(), options=self.browser_options
         )
         self.BASE_URL = "https://lista.mercadolivre.com.br"
 
-    def scrape_homepage_navbar(self) -> str:
-        """This function returns the URL to the page with the categories list."""
-        
+    def search_products(self, products: str) -> None:
+        """This function will redirect the current page
+        to a page with the results of the products searched
+        according to the given term."""
+
         self.driver.get(self.BASE_URL)
-        categories = self.driver.find_element(By.CLASS_NAME, "nav-menu-categories-link")
-        return categories.get_attribute("href")
+        search_input = self.driver.find_element(By.CLASS_NAME, "nav-search-input")
+        search_button = self.driver.find_element(By.CLASS_NAME, "nav-search-btn")
 
+        search_input.send_keys(products)
+        search_button.click()
 
-    def scrape_categories_list(self, category:str) -> str:
-        """This function returns the URL of the chosen category page."""
+    def get_data(self, product) -> dict:
+        """This function will return a dictionary
+        with the product's image, description, and price.
+
+        Parameters
+        ----------
+        product : WebElement
+            Web element
+        """
+
+        data = {}
+        data["img"] = product.find_element(
+            By.XPATH, "//img[contains(@class, 'ui-search-result-image__element')]"
+        ).get_attribute("src")
+        data["name"] = product.find_element(By.TAG_NAME, "h2").text
+        price_symbol = product.find_element(By.CLASS_NAME, "price-tag-symbol").text
+        price_value = product.find_element(By.CLASS_NAME, "price-tag-fraction").text
+        data["price"] = f"{price_symbol} {price_value}"
+        return data
+
+    def get_products_in_list(self) -> list[dict]:
+        """This function returns a list of all available products
+        on the page.
+        Each product on the list is a dictionary 
+        with product's description, photo, and price.
+        """
         
-        category_list_url = self.scrape_homepage_navbar()
-        self.driver.get(category_list_url)
-        page_url = self.driver.find_element(
-            By.XPATH, f"//h3[contains( text( ), '{category}')]"
-        ).find_element(By.XPATH, "..").get_attribute("href")
-        return page_url
+        products_elements = self.driver.find_elements(
+                By.XPATH,
+                "//div[contains(@class, 'andes-card--default ui-search-result')]",
+            )
+        products_list = []
+        for product in products_elements:
+            data = self.get_data(product)
+            products_list.append(data)
+        return products_list
+
+    def get_products_in_role():
+        pass
 
     def get_mobiles(self):
-        mobile_url = self.scrape_categories_list("Celulares e Smartphones")
-        self.driver.get(mobile_url)
-        WebDriverWait(self.driver, 20).until(Chrome.find_element((By.XPATH, "//button[@class='andes-button']")))
-        button = self.driver.find_element(By.CLASS_NAME, "andes-button")
-        button.find_element(By.XPATH, "..").click()
+        """This function returns dictionaries' list.
+        Each dictionary has the data of a mobile phone from the results page."""
         
-        products = self.driver.find_elements(By.XPATH, "//li[contains(@class, 'ui-search-layout__item')]")
-        # self.driver.quit()
-        return products
+        self.search_products("Celulares e smartphones")
+        products_list = self.get_products_in_list()
+        self.driver.quit()
+        return products_list
 
-    def get_refrigerator(self):
-        pass
+    def get_refrigerators(self):
+        """This function returns dictionaries' list.
+        Each dictionary has the data of a refrigarator from the results page."""
+        
+        self.search_products("Geladeiras")
+        products_list = self.get_products_in_list()
+        return products_list
 
     def get_tv(self):
-        pass
+        self.search_products("Televisores")
+        products_list = self.get_products_in_role()
+        print(len(products_list))
+        self.driver.quit()
+        return products_list
