@@ -54,6 +54,24 @@ Through a drop-down menu you can:
 <br/>
 
 
+## Installation
+1. Clone the repository:
+   - Use the command: `git clone git@github.com:Camila-Falaschi/Web_Scraper.git`
+   - Navigate to the cloned repository folder: `cd Web_Scraper`
+
+2. Install the dependencies:
+   - Run the command `npm install` in the front-end directory (`~/Web_Scraper/front-end`), and back-end directory (`~/Web_Scraper/back-end`).
+
+3. Create the virtual environment for the project and install the dependencies. ([see more](#virtual-environment))
+
+4. You can use this project with Docker. ([see more](#docker))
+
+<p align="right"><a href="#full-stack-web-scraper---lexart">(back to top)</a></p>
+
+
+<br/>
+
+
 ## Virtual Environment
 To create the virtual enviroment you need to have `pip` installed in you computer. You can use the following command to verify you have it installed:
 ```
@@ -77,7 +95,7 @@ python3 -m pip install -r dev-requirements.txt
 
 
 ## Docker
-To start the Docker containers run the command `docker-compose up -d --build` in the root directory (`~/web_scraper`). It might take a while.
+To start the Docker containers run the command `docker-compose up -d --build` in the root directory (`~/Web_Scraper`). It might take a while.
 
 <p align="right"><a href="#full-stack-web-scraper---lexart">(back to top)</a></p>
 
