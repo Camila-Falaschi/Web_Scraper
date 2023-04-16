@@ -6,7 +6,7 @@ import { Schema, model, models } from "mongoose";
 class ScraperODM {
   /**
    * In the constructor is defined:
-   * - A Schema which creates the relationship between our MongoDB documents and the Mongoose model;
+   * - A Schema that creates the relationship between our MongoDB documents and the Mongoose model;
    * - And the name of the database to be used.
    */
   constructor() {
