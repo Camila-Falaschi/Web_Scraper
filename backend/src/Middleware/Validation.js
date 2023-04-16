@@ -19,4 +19,4 @@ const validateFields = (req, _res, next) => {
   next();
 };
 
-export default validateFields;
+export default { validateFields };

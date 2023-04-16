@@ -1,4 +1,5 @@
-import { Schema, model, models } from "mongoose";
+import mongoose from "mongoose";
+const { Schema, model, models } = mongoose;
 
 /**
  * ScraperODM is a class that uses Mongoose to create the project database.
@@ -17,7 +18,7 @@ class ScraperODM {
       category: { type: String, required: true },
       website: { type: String, required: true },
     });
-    this.modelName = "Scraper";
+    this.modelName = "WebScraper";
     this.model = models[this.modelName] || model(this.modelName, this.schema);
   }
 

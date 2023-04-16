@@ -1,11 +1,9 @@
-import validateFields from "../Middleware/Validation";
-
-const { Router } = require("express");
-const scraperController = require("../Controllers/ScraperController");
+import validateFields from "../Middleware/Validation.js";
+import { Router } from "express";
+import scraperController from "../Controllers/ScraperController.js";
 
 const routes = Router();
 
-routes.use(validateFields);
-routes.get("/", scraperController.getProducts());
+routes.get("/", validateFields, scraperController);
 
 export default routes;

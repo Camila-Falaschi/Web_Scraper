@@ -1,6 +1,6 @@
 import "dotenv/config";
-import connectToDatabase from "./Models/Connection";
-import app from "./app";
+import connectToDatabase from "./Models/Connection.js";
+import app from "./app.js";
 
 const PORT = process.env.PORT || 3001;
 connectToDatabase()
@@ -10,6 +10,4 @@ connectToDatabase()
   .catch((error) => {
     console.log("Connection with database generated an error:\r\n");
     console.error(error);
-    console.log("\r\nServer initialization cancelled");
-    process.exit(0);
   });

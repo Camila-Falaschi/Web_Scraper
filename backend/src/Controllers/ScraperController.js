@@ -1,4 +1,4 @@
-const scraperService = require("../Services/ScraperService");
+import scraperService from "../Services/ScraperService.js";
 
 /**
  * Returns a successful response (status 200) with the product data as an array of objects.
@@ -6,7 +6,7 @@ const scraperService = require("../Services/ScraperService");
  * @param {Response} res
  */
 const getProducts = async (req, res) => {
-  const products = await scraperService.getProducts(req.body);
+  const products = await scraperService(req.body);
   return res.status(200).json(products);
 };
 

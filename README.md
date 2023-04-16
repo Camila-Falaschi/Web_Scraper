@@ -24,10 +24,10 @@
 
 ## About the project
 This project is a FullStack application that searches and displays products from Mercado Livre and Buscapé online stores.
-Through a drop-down menu you can:
+Through a drop-down menu, you can:
 - Choose between the categories: Mobile, Refrigerator, and TV;
-- Choose between the site Mercado Livre and Buscapé to search the products;
-- Search for a product in the search bar.
+- Choose between the site Mercado Livre and Buscapé to search for the products;
+<!-- - Search for a product in the search bar. -->
 
 <p align="right"><a href="#full-stack-web-scraper---lexart">(back to top)</a></p>
 

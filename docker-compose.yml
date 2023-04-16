@@ -13,7 +13,7 @@ services:
       - backend
 
   backend:
-    image: node:16.14
+    image: node:16
     container_name: backend
     build: ./backend
     ports:
@@ -21,14 +21,11 @@ services:
     working_dir: /app-backend
     volumes:
       - ./:/app
-    tty: true
-    stdin_open: true
-    command: bash
-    restart: unless-stopped
+    restart: always
     depends_on:
       - mongodb
     environment:
-      - DB_HOST=mongodb
+      - MONGO_URI=mongodb://mongodb:27017/WebScraper
     networks:
       - web_scraper_net
 
@@ -37,7 +34,7 @@ services:
     container_name: mongo_db
     volumes:
       - ./:/app
-    restart: unless-stopped
+    restart: always
     ports:
       - 27017:27017
     networks:
@@ -45,7 +42,7 @@ services:
 
   chrome:
     image: selenium/standalone-chrome
-    container_name: selenium/chrome
+    container_name: selenium-chrome
     shm_size: 2g
     depends_on:
       - selenium-hub
