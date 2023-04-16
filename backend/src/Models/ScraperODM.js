@@ -58,7 +58,7 @@ class ScraperODM {
    * website: string,
    * }}
    */
-  async findByQuery({category, website}) {
+  async findByQuery({ category, website }) {
     return this.model.find({ category, website });
   }
 }
