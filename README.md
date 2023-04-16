@@ -99,6 +99,11 @@ MONGO_DB_URL=mongodb://localhost:27017/WebScraper
     "message": "Invalid empty fields"
   }
   ```
+  ```
+  {
+    "message": "Invalid fields"
+  }
+  ```
   
   Status: 404 Not Found
   ```

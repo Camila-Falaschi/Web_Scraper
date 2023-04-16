@@ -1,5 +1,6 @@
 const errors = [
   { status: 400, message: "Invalid empty fields" },
+  { status: 400, message: "Invalid fields" },
   { status: 404, message: "Products not found" },
 ];
 
