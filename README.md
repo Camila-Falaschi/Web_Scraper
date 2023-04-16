@@ -1,4 +1,4 @@
-# Full Stack Developer Review - Lexart
+# Full Stack Web Scraper - Lexart
 
 ## Software Engineering
 
@@ -16,6 +16,25 @@
 
 2. Host the solution online on a free server like heroku or some other alternative. 
 
+<p align="right"><a href="#full-stack-web-scraper---lexart">(back to top)</a></p>
+
+
+<br/>
+
+
+## About the project
+This project is a FullStack application that searches and displays products from Mercado Livre and Buscapé online stores.
+Through a drop-down menu you can:
+- Choose between the categories: Mobile, Refrigerator, and TV;
+- Choose between the site Mercado Livre and Buscapé to search the products;
+- Search for a product in the search bar.
+
+<p align="right"><a href="#full-stack-web-scraper---lexart">(back to top)</a></p>
+
+
+<br/>
+
+
 ## Build with
 #### Front-end
 - ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
@@ -29,6 +48,10 @@
 - ![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
 - ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 
+<p align="right"><a href="#full-stack-web-scraper---lexart">(back to top)</a></p>
+
+
+<br/>
 
 
 ## Virtual Environment
@@ -47,13 +70,31 @@ python3 -m venv .venv && source .venv/bin/activate
 python3 -m pip install -r dev-requirements.txt
 ```
 
+<p align="right"><a href="#full-stack-web-scraper---lexart">(back to top)</a></p>
+
+
+<br/>
+
+
 ## Docker
 To start the Docker containers run the command `docker-compose up -d --build` in the root directory (`~/web_scraper`). It might take a while.
+
+<p align="right"><a href="#full-stack-web-scraper---lexart">(back to top)</a></p>
+
+
+<br/>
+
 
 ## `.env` File Example
 ```
 MONGO_DB_URL=mongodb://localhost:27017/WebScraper
 ```
+
+<p align="right"><a href="#full-stack-web-scraper---lexart">(back to top)</a></p>
+
+
+<br/>
+
 
 ## API
 <details>
@@ -112,3 +153,5 @@ MONGO_DB_URL=mongodb://localhost:27017/WebScraper
   }
   ```
 </details>
+
+<p align="right"><a href="#full-stack-web-scraper---lexart">(back to top)</a></p>
