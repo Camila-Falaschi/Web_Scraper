@@ -1,0 +1,38 @@
+.search-section {
+  display: flex;
+  flex-flow: wrap;
+  gap: 40px;
+  background-color: white;
+  padding: 30px 40px;
+  border-radius: 20px;
+}
+
+.input {
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
+  font-weight: 600;
+  font-size: larger;
+}
+
+.input select {
+  border: none;
+  border-radius: 20px;
+  width: 200px;
+  padding: 5px 10px;
+}
+
+.search-button {
+  width: 100px;
+  border: none;
+  border-radius: 20px;
+  background-color: rgb(6, 100, 100);
+  color: white;
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+.search-button:disabled {
+  background-color: rgb(238, 235, 235);
+}
+
