@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import AppContext from "../AppContext/AppContext";
 import { requestGet } from "../Services/requests";
+import "../Styles/search.css";
 
 function Search() {
   const { setProducts, setLoading, setErrorNotFound } = useContext(AppContext);
@@ -38,38 +39,44 @@ function Search() {
       setLoading(false);
       setProducts(productsList);
     } catch (error) {
+      setLoading(false);
       setErrorNotFound(true);
     }
   };
 
   return (
-    <section>
-      <label htmlFor="category-select">Category</label>
-      <select
-        name="category"
-        id="category-select"
-        onChange={({ target }) => handleChangeCategory(target)}
-      >
-        <option value="" disabled={isCategorySelected}>
-          ----Select Category----
-        </option>
-        <option value="mobile">Mobile</option>
-        <option value="refrigerator">Refrigerator</option>
-        <option value="tv">TV</option>
-      </select>
-      <label htmlFor="website-select">Website</label>
-      <select
-        name="website"
-        id="website-select"
-        onChange={({ target }) => handleChangeWebsite(target)}
-      >
-        <option value="" disabled={isWebsiteSelected}>
-          ----Select Website----
-        </option>
-        <option value="mobile">Mercado Livre</option>
-        <option value="refrigerator">Buscape</option>
-      </select>
+    <section className="search-section">
+      <label htmlFor="category-select" className="input">
+        Category
+        <select
+          name="category"
+          id="category-select"
+          onChange={({ target }) => handleChangeCategory(target)}
+        >
+          <option value="" disabled={isCategorySelected}>
+            ----Select Category----
+          </option>
+          <option value="mobile">Mobile</option>
+          <option value="refrigerator">Refrigerator</option>
+          <option value="tv">TV</option>
+        </select>
+      </label>
+      <label htmlFor="website-select" className="input">
+        Website
+        <select
+          name="website"
+          id="website-select"
+          onChange={({ target }) => handleChangeWebsite(target)}
+        >
+          <option value="" disabled={isWebsiteSelected}>
+            ----Select Website----
+          </option>
+          <option value="mobile">Mercado Livre</option>
+          <option value="refrigerator">Buscape</option>
+        </select>
+      </label>
       <button
+        className="search-button"
         type="button"
         onClick={(event) => handleSubmit(event)}
         disabled={isSubmitEnabled}
