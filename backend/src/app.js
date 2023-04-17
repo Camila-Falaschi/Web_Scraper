@@ -1,6 +1,6 @@
 import express from "express";
-import 'express-async-errors';
-const cors = require('cors');
+import "express-async-errors";
+import cors from "cors";
 import routes from "./Routes/ScraperRoute.js";
 
 const app = express();

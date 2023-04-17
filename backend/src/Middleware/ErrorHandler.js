@@ -20,4 +20,4 @@ const errorHandler = (error, _req, res, next) => {
   next();
 };
 
-export default { errorHandler };
+export default errorHandler;
