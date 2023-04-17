@@ -151,14 +151,20 @@ MONGO_DB_URL=mongodb://localhost:27017/WebScraper
   ```
     [
         {
+            '_id': '507f1f77bcf86cd799439011',
             'img': 'https://i.zst.com.br/thumbs/45/17/34/-747048218.jpg',
             'name': 'Smartphone Xiaomi Redmi Note 12 Pro 5G 256GB Câmera Tripla',
-            'price': 'R$ 4.391,10'
+            'price': 'R$ 4.391,10',
+            'category': 'Mobile',
+            'website': 'Mercado Livre',
         }, 
         {
+            '_id': '507f191e810c19729de860ea',
             'img': 'https://i.zst.com.br/thumbs/45/17/34/-747048218.jpg',
             'name': 'Smartphone Samsung Galaxy A54 5G SM-A546E 8GB RAM 128GB Câmera Tripla',
-            'price': 'R$ 4.391,10'
+            'price': 'R$ 4.391,10',
+            'category': 'Mobile',
+            'website': 'Mercado Livre',
         },
         ...
     ]
