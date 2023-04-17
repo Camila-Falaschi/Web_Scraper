@@ -39,7 +39,7 @@ Through a drop-down menu, you can:
 #### Front-end
 - ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 - ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
-
+- <img src="https://user-images.githubusercontent.com/102390423/227817511-e68fa9dd-fbb5-42d9-b106-a583fcc7814c.png" alt="axios badge" width="150">
 
 #### Back-end
 - ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
@@ -96,6 +96,18 @@ python3 -m pip install -r dev-requirements.txt
 
 ## Docker
 To start the Docker containers run the command `docker-compose up -d --build` in the root directory (`~/Web_Scraper`). It might take a while.
+
+<p align="right"><a href="#full-stack-web-scraper---lexart">(back to top)</a></p>
+
+
+<br/>
+
+
+## Usage
+To start the project, follow these steps:
+1. Create and configure an `.env` file with your environment variables in the back-end directory. Otherwise, the database configuration will use the default values.
+2. Open the front-end terminal(`~/Web_Scraper/front-end`), and back-end terminal (`~/Web_Scraper/back-end`), and run the following command:
+- `npm start` - This will start the application.
 
 <p align="right"><a href="#full-stack-web-scraper---lexart">(back to top)</a></p>
 
